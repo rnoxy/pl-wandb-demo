@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pl-wandb-demo"
+version = "0.1.0"
+description = ""
+authors = ["Rafał Nowak <rafal.nowak@tooploox.com>"]
+
+[tool.poetry.dependencies]
+icecream = "^2.1.2"
+python = "^3.9"
+pytorch-lightning = "^1.6.0"
+torchvision = "^0.12.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
