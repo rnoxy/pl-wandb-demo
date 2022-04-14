@@ -5,9 +5,9 @@ from pl_wandb_demo.models import MNISTClassifier
 
 def main():
     dm = MNISTDataModule(batch_size=32)
-    model = MNISTClassifier()
+    model = MNISTClassifier(units=100)
 
-    trainer = pl.Trainer(max_epochs=10)
+    trainer = pl.Trainer(gpus=-1, max_epochs=10)
     trainer.fit(model, dm)
 
 

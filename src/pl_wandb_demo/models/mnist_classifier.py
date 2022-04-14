@@ -4,13 +4,20 @@ from torch.optim import lr_scheduler
 
 
 class MNISTClassifier(pl.LightningModule):
-    def __init__(self):
+    def __init__(self, units=100):
         super().__init__()
+        self.save_hyperparameters()
+
         self.criterion = torch.nn.CrossEntropyLoss()
-        self.fc1 = torch.nn.Linear(784, 10)
+        self.fc1 = torch.nn.Linear(784, units)
+        self.fc2 = torch.nn.Linear(units, 10)
+        self.relu = torch.nn.ReLU()
 
     def forward(self, x):
-        return self.fc1(x)
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.fc2(x)
+        return x
 
     def training_step(self, batch, batch_idx):
         x, y = batch
