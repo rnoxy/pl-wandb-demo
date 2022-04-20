@@ -8,4 +8,4 @@ model_config:
 
 trainer_args:
   gpus: -1
-  max_epochs: 15
+  max_epochs: 5
