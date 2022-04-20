@@ -17,6 +17,7 @@ class MNISTDataModule(pl.LightningDataModule):
         self.train_set = MNIST(
             root="~/datasets", train=True, download=True, transform=self.transform
         )
+        self.val_set = MNIST(root="~/datasets", train=False, download=False, transform=self.transform)
 
     def train_dataloader(self):
         return DataLoader(
