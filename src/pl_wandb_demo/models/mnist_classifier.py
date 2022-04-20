@@ -31,6 +31,7 @@ class MNISTClassifier(pl.LightningModule):
         x = torch.flatten(x, start_dim=1)
         logits = self.forward(x)
         loss = self.criterion(logits, y)
+        self.log('val/loss', loss.item())
         return loss
 
     def configure_optimizers(self):
