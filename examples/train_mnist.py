@@ -11,6 +11,8 @@ def main():
 
     dm = MNISTDataModule(batch_size=32)
     model = MNISTClassifier(units=100)
+    # One can use the model architecture from the checkpoint
+    # model = MNISTClassifier.load_from_checkpoint(args.checkpoint)
 
     trainer = pl.Trainer(gpus=-1, max_epochs=25)
     trainer.fit(model, datamodule=dm, ckpt_path=args.checkpoint)
