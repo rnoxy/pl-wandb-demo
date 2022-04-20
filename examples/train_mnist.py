@@ -14,10 +14,10 @@ def main():
     args = parser.parse_args()
 
     config = load_config(args.config)
-    dm = MNISTDataModule(batch_size=config["batch_size"])
-    model = MNISTClassifier(config=config)
+    dm = MNISTDataModule(config=config["data_module_config"])
+    model = MNISTClassifier(config=config["model_config"])
 
-    trainer = pl.Trainer(gpus=config["gpus"], max_epochs=config["max_epochs"])
+    trainer = pl.Trainer(**config["trainer_args"])
     trainer.fit(model, datamodule=dm, ckpt_path=args.checkpoint)
 
 

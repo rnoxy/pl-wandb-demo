@@ -1,7 +1,11 @@
 
-batch_size: 32
+data_module_config:
+  batch_size: 32
+  num_workers: 4
 
-units: 100
+model_config:
+  units: 50
 
-gpus: -1
-max_epochs: 15
+trainer_args:
+  gpus: -1
+  max_epochs: 15
