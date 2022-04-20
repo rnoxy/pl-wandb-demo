@@ -1,0 +1,7 @@
+
+batch_size: 32
+
+units: 100
+
+gpus: -1
+max_epochs: 15

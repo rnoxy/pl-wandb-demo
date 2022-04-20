@@ -1,22 +1,26 @@
+import argparse
+
 import pytorch_lightning as pl
+
 from pl_wandb_demo.data_modules import MNISTDataModule
 from pl_wandb_demo.models import MNISTClassifier
-import argparse
+from pl_wandb_demo.utils import load_config
 
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--config", "-c", type=str, required=True)
     parser.add_argument("--checkpoint", type=str, required=False)
     args = parser.parse_args()
 
-    dm = MNISTDataModule(batch_size=32)
-    model = MNISTClassifier(units=100)
-    # One can use the model architecture from the checkpoint
-    # model = MNISTClassifier.load_from_checkpoint(args.checkpoint)
+    config = load_config(args.config)
+    dm = MNISTDataModule(batch_size=config["batch_size"])
+    model = MNISTClassifier(config=config)
 
-    trainer = pl.Trainer(gpus=-1, max_epochs=25)
+    trainer = pl.Trainer(gpus=config["gpus"], max_epochs=config["max_epochs"])
     trainer.fit(model, datamodule=dm, ckpt_path=args.checkpoint)
 
 
 if __name__ == "__main__":
     main()
+
