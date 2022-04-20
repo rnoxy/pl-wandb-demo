@@ -1,3 +1,4 @@
 .idea
 poetry.lock
 /lightning_logs/
+/data/
