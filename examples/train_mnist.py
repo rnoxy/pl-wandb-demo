@@ -2,6 +2,7 @@ import argparse
 
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import ModelCheckpoint, RichModelSummary, RichProgressBar
+from pytorch_lightning.loggers import WandbLogger
 
 from pl_wandb_demo.data_modules import MNISTDataModule
 from pl_wandb_demo.models import MNISTClassifier
@@ -36,8 +37,9 @@ def main():
     model = MNISTClassifier(config=config["model_config"])
 
     callbacks = get_callbacks()
+    logger = WandbLogger(offline=True)
 
-    trainer = pl.Trainer(**config["trainer_args"], callbacks=callbacks)
+    trainer = pl.Trainer(**config["trainer_args"], callbacks=callbacks, logger=WandbLogger())
     trainer.fit(model, datamodule=dm, ckpt_path=args.checkpoint)
 
 

@@ -24,6 +24,7 @@ class MNISTClassifier(pl.LightningModule):
         x = torch.flatten(x, start_dim=1)
         logits = self.forward(x)
         loss = self.criterion(logits, y)
+        self.log('train/loss', loss.item())
         return loss
 
     def validation_step(self, batch, batch_idx):
