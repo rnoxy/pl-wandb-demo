@@ -13,6 +13,8 @@ def main():
     wandb.log({"metric": 1.0})
     wandb.log({"metric": 15.0})
 
+    wandb.finish()
+
 
 if __name__ == "__main__":
     main()

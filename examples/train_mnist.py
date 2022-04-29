@@ -39,7 +39,7 @@ def main():
     callbacks = get_callbacks()
     logger = WandbLogger(offline=True)
 
-    trainer = pl.Trainer(**config["trainer_args"], callbacks=callbacks, logger=WandbLogger())
+    trainer = pl.Trainer(**config["trainer_args"], callbacks=callbacks, logger=logger)
     trainer.fit(model, datamodule=dm, ckpt_path=args.checkpoint)
 
 
